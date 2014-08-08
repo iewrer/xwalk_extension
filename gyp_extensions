@@ -27,3 +27,4 @@ if [ ! `which make_apk.py` ]; then
 fi
 
 gyp --depth=. android-extension.gyp
+
