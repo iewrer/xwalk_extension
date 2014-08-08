@@ -1,0 +1,4 @@
+This is the extension written for supporting google mobile ads API.
+The codes are organized in order similar to deqing's iap codes.It contains a java code file,a js code file,a json config file and a gyp config file.
+Still there is a example test case for admob exension in folder examples/admob.
+There also are two google play services's jar files which can be used to make the compile successfully completed. 
