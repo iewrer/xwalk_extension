@@ -1,0 +1,11 @@
+rule $
+    build_output_dirs_target_create_java_output_dirs_70bc478692996379ca1ea1de0157794d
+  command = cd ../../build/android; mkdir -p ../../out/Default/apks $
+      ../../out/Default/lib.java ../../out/Default/test.lib.java
+  description = ACTION build_output_dirs: $
+      create_java_output_dirs_70bc478692996379ca1ea1de0157794d
+  restat = 1
+
+build ../../build/android: $
+    build_output_dirs_target_create_java_output_dirs_70bc478692996379ca1ea1de0157794d
+

@@ -1,0 +1,51 @@
+rule admob_target_javac_admob_b1ba3af509d189d78b2c022c573b46ea
+  command = cd ../../admob; python ../build/android/gyp/javac.py $
+      "--output-dir=../out/Default/gen/admob/classes" $
+      "--classpath=/home/barry/code/crosswalk-8.37.182.0/libs/xwalk_app_runtime_java.jar $
+      /home/barry/code/android-sdk-linux/platforms/android-20/android.jar $
+      ./google-play-services.jar ./google-play-services_lib.jar" $
+      "--src-gendirs=" "--javac-includes=" $
+      "--stamp=../out/Default/gen/admob/compile.stamp" $
+      ./src/org/xwalk/extensions/admob.java
+  description = ACTION Compiling admob java sources
+  restat = 1
+
+build gen/admob/compile.stamp: $
+    admob_target_javac_admob_b1ba3af509d189d78b2c022c573b46ea $
+    ../../build/android/gyp/util/build_utils.py $
+    ../../build/android/gyp/javac.py $
+    ../../admob/src/org/xwalk/extensions/admob.java $
+    /home/barry/code/crosswalk-8.37.182.0/libs/xwalk_app_runtime_java.jar $
+    /home/barry/code/android-sdk-linux/platforms/android-20/android.jar $
+    ../../admob/google-play-services.jar $
+    ../../admob/google-play-services_lib.jar || ../../build/android
+
+rule admob_target_jar_admob_b1ba3af509d189d78b2c022c573b46ea
+  command = cd ../../admob; python ../build/android/gyp/jar.py $
+      "--classes-dir=../out/Default/gen/admob/classes" $
+      "--jar-path=../out/Default/gen/admob/admob.jar" $
+      "--excluded-classes=\"*/R.class\" \"*/R##*.class\""
+  description = ACTION Creating admob jar
+  restat = 1
+
+build gen/admob/admob.jar: $
+    admob_target_jar_admob_b1ba3af509d189d78b2c022c573b46ea $
+    ../../build/android/gyp/util/build_utils.py $
+    ../../build/android/gyp/util/md5_check.py $
+    ../../build/android/gyp/jar.py gen/admob/compile.stamp || $
+    ../../build/android
+
+rule admob_target_extension_admob_b1ba3af509d189d78b2c022c573b46ea
+  command = cd ../../admob; cp admob.js admob.json ../out/Default/gen/admob
+  description = ACTION Copying js and json of admob to jar path
+  restat = 1
+
+build gen/admob/admob.js gen/admob/admob.json: $
+    admob_target_extension_admob_b1ba3af509d189d78b2c022c573b46ea $
+    ../../admob/admob.js ../../admob/admob.json gen/admob/compile.stamp || $
+    ../../build/android
+
+build obj/admob/admob.actions_rules_copies.stamp: stamp $
+    gen/admob/compile.stamp gen/admob/admob.jar gen/admob/admob.js $
+    gen/admob/admob.json
+

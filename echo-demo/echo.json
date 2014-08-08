@@ -1,0 +1,5 @@
+{
+  "name":    "echo",
+  "class":   "org.xwalk.extensions.echo",
+  "jsapi":   "echo.js"
+}

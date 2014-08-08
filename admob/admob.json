@@ -1,0 +1,5 @@
+{
+  "name":    "admob",
+  "class":   "org.xwalk.extensions.admob",
+  "jsapi":   "admob.js"
+}
